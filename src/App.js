@@ -29,7 +29,7 @@ function App() {
   const fetchTodos = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/todos?password=${userPassword}`
+        `https://todolist-backend-lv5j.onrender.com/api/todos?password=${userPassword}`
       );
       setTodos(response.data);
     } catch (error) {
@@ -45,10 +45,13 @@ function App() {
   const addTodo = async () => {
     if (!newTodo.trim()) return;
     try {
-      const response = await axios.post("http://localhost:5000/api/todos", {
-        text: newTodo,
-        userPassword: userPassword,
-      });
+      const response = await axios.post(
+        "https://todolist-backend-lv5j.onrender.com/api/todos",
+        {
+          text: newTodo,
+          userPassword: userPassword,
+        }
+      );
       fetchTodos();
       setNewTodo("");
     } catch (error) {
@@ -63,10 +66,13 @@ function App() {
 
   const saveEdit = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/todos/${editingId}`, {
-        text: editText,
-        userPassword: userPassword,
-      });
+      await axios.put(
+        `https://todolist-backend-lv5j.onrender.com/api/todos/${editingId}`,
+        {
+          text: editText,
+          userPassword: userPassword,
+        }
+      );
       fetchTodos();
       setEditingId(null);
       setEditText("");
@@ -82,7 +88,9 @@ function App() {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/${id}`);
+      await axios.delete(
+        `https://todolist-backend-lv5j.onrender.com/api/${id}`
+      );
       fetchTodos();
     } catch (error) {
       console.log("Delete failed");
